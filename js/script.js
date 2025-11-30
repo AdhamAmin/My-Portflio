@@ -1,3 +1,65 @@
+document.addEventListener('DOMContentLoaded', () => {
+    initTheme();
+    initThemeToggle();
+    initMobileMenu();
+    setActiveLink();
+    injectBlobs();
+    initAnimations();
+    initMasterpiece();
+});
+
+function initTheme() {
+    const savedTheme = localStorage.getItem('theme') || 'light-theme';
+    document.body.className = savedTheme;
+}
+
+function injectBlobs() {
+    const blobsHTML = `
+        <div class="background-blobs">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+        </div>
+    `;
+    document.body.insertAdjacentHTML('afterbegin', blobsHTML);
+}
+
+function initMasterpiece() {
+    // Surprise: Interactive Mouse Trail
+    const trail = document.createElement('div');
+    trail.className = 'mouse-trail';
+    document.body.appendChild(trail);
+
+    let mouseX = 0, mouseY = 0;
+    let trailX = 0, trailY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    function animateTrail() {
+        trailX += (mouseX - trailX) * 0.1;
+        trailY += (mouseY - trailY) * 0.1;
+
+        trail.style.transform = `translate(${trailX}px, ${trailY}px)`;
+        requestAnimationFrame(animateTrail);
+    }
+    animateTrail();
+
+    // Click Burst Effect
+    document.addEventListener('click', (e) => {
+        createBurst(e.clientX, e.clientY);
+    });
+}
+
+function createBurst(x, y) {
+    const burst = document.createElement('div');
+    burst.className = 'burst';
+    burst.style.left = x + 'px';
+    burst.style.top = y + 'px';
+    document.body.appendChild(burst);
+}
 function initThemeToggle() {
     const toggleBtn = document.getElementById('theme-toggle');
     if (toggleBtn) {
