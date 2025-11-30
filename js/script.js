@@ -134,4 +134,38 @@ function initAnimations() {
         yoyo: true,
         ease: 'sine.inOut'
     });
+
+    // Scroll to Top Button Logic
+    const scrollBtn = document.getElementById('scroll-top-btn');
+    if (scrollBtn) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollBtn.classList.add('visible');
+            } else {
+                scrollBtn.classList.remove('visible');
+            }
+        });
+
+        scrollBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+
+    // Newsletter Form Submission (Google Sheets Stub)
+    const newsletterForm = document.querySelector('.newsletter-form');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = newsletterForm.querySelector('input').value;
+            if (email) {
+                // Here you would typically send data to Google Sheets via fetch
+                console.log('Submitting email to Google Sheets:', email);
+                alert('Thanks for subscribing! (Integration pending)');
+                newsletterForm.reset();
+            }
+        });
+    }
 }
