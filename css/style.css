@@ -648,22 +648,6 @@ header {
     }
 
     .timeline-item:nth-child(odd),
-    .timeline-item:nth-child(even) {
-        left: 0;
-        text-align: left;
-    }
-
-    .timeline-item:nth-child(odd) .timeline-dot,
-    .timeline-item:nth-child(even) .timeline-dot {
-        left: 10px;
-        right: auto;
-    }
-
-    /* Mobile Menu */
-    .mobile-menu-btn {
-        display: flex;
-    }
-
     .nav-links {
         position: fixed;
         top: 0;
