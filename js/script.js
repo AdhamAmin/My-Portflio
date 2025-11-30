@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     loadIncludes();
     initTheme();
     injectBlobs();
-    // Animations will be initialized after includes are loaded to ensure DOM is ready
 });
 
 function injectBlobs() {
@@ -25,9 +24,13 @@ async function loadIncludes() {
             const response = await fetch('includes/header.html');
             const data = await response.text();
             headerPlaceholder.innerHTML = data;
-            initThemeToggle(); // Re-bind listener after loading
 
-            // Re-run animations for header elements if needed
+            // Initialize header-dependent features
+            initThemeToggle();
+            initMobileMenu();
+            setActiveLink();
+
+            // Header entrance animation
             gsap.from('header', { y: -50, opacity: 0, duration: 1, ease: 'power3.out' });
         } catch (error) {
             console.error('Error loading header:', error);
@@ -68,6 +71,48 @@ function initThemeToggle() {
     }
 }
 
+function initMobileMenu() {
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (menuBtn && navLinks) {
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+
+            // Animate hamburger to X
+            const spans = menuBtn.querySelectorAll('span');
+            if (navLinks.classList.contains('active')) {
+                gsap.to(spans[0], { rotation: 45, y: 7, duration: 0.3 });
+                gsap.to(spans[1], { opacity: 0, duration: 0.3 });
+                gsap.to(spans[2], { rotation: -45, y: -7, duration: 0.3 });
+            } else {
+                gsap.to(spans, { rotation: 0, y: 0, opacity: 1, duration: 0.3 });
+            }
+        });
+
+        // Close menu when clicking a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const spans = menuBtn.querySelectorAll('span');
+                gsap.to(spans, { rotation: 0, y: 0, opacity: 1, duration: 0.3 });
+            });
+        });
+    }
+}
+
+function setActiveLink() {
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const links = document.querySelectorAll('.nav-link');
+
+    links.forEach(link => {
+        // Simple check: if href matches current page filename
+        if (link.getAttribute('href') === currentPage) {
+            link.classList.add('active');
+        }
+    });
+}
+
 function initAnimations() {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -81,7 +126,7 @@ function initAnimations() {
         delay: 0.2
     });
 
-    // Liquid background animation (simple version for now)
+    // Liquid background animation
     gsap.to('.liquid-bg', {
         y: 20,
         duration: 5,

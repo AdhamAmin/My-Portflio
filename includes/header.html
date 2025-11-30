@@ -1,14 +1,19 @@
-<header class="glass-panel"
-    style="margin: 1rem; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 1rem; z-index: 100;">
-    <div class="logo" style="font-weight: bold; font-size: 1.5rem;">My Portfolio</div>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="projects.html">Projects</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
+<header class="glass-panel">
+    <div class="logo">My Portfolio</div>
+
+    <button class="mobile-menu-btn" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="projects.html" class="nav-link">Projects</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <button id="theme-toggle" class="theme-btn">
+            <span class="icon">🌓</span> Theme
+        </button>
     </nav>
-    <div class="header-actions">
-        <button id="theme-toggle"
-            style="background: none; border: 1px solid var(--color-text); color: var(--color-text); padding: 0.5rem 1rem; border-radius: 20px; cursor: pointer;">Theme</button>
-    </div>
 </header>
