@@ -23,7 +23,25 @@
     </head>
 
 <body class="light-theme">
-    <div id="header-placeholder"></div>
+    <header class="glass-panel">
+        <div class="logo">My Portfolio</div>
+
+        <button class="mobile-menu-btn" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="projects.html" class="nav-link">Projects</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+            <button id="theme-toggle" class="theme-btn">
+                <span class="icon">🌓</span> Theme
+            </button>
+        </nav>
+    </header>
     <main id="home-page">
         <section class="hero">
             <div class="hero-content stagger-item">
@@ -65,7 +83,41 @@
         </section>
     </main>
     <button id="scroll-top-btn" aria-label="Scroll to Top">↑</button>
-    <div id="footer-placeholder"></div>
+    <footer class="site-footer">
+        <div class="footer-content container">
+            <div class="footer-section">
+                <h3>My Portfolio</h3>
+                <p>Building digital experiences with passion and precision.</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon">Li</a>
+                    <a href="#" class="social-icon">Gh</a>
+                    <a href="#" class="social-icon">Tw</a>
+                    <a href="#" class="social-icon">Ig</a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 My Portfolio. Built with Vanilla JS & GSAP.</p>
+        </div>
+    </footer>
 </body>
 
 </html>
