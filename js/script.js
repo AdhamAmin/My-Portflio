@@ -25,29 +25,35 @@ function injectBlobs() {
 }
 
 function initMasterpiece() {
-    // Surprise: Interactive Mouse Trail
-    const trail = document.createElement('div');
-    trail.className = 'mouse-trail';
-    document.body.appendChild(trail);
+    // Check if device is a touch device (mobile/tablet)
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
-    let mouseX = 0, mouseY = 0;
-    let trailX = 0, trailY = 0;
+    // Only enable mouse trail on non-touch devices
+    if (!isTouchDevice) {
+        // Surprise: Interactive Mouse Trail
+        const trail = document.createElement('div');
+        trail.className = 'mouse-trail';
+        document.body.appendChild(trail);
 
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-    });
+        let mouseX = 0, mouseY = 0;
+        let trailX = 0, trailY = 0;
 
-    function animateTrail() {
-        trailX += (mouseX - trailX) * 0.1;
-        trailY += (mouseY - trailY) * 0.1;
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
 
-        trail.style.transform = `translate(${trailX}px, ${trailY}px)`;
-        requestAnimationFrame(animateTrail);
+        function animateTrail() {
+            trailX += (mouseX - trailX) * 0.1;
+            trailY += (mouseY - trailY) * 0.1;
+
+            trail.style.transform = `translate(${trailX}px, ${trailY}px)`;
+            requestAnimationFrame(animateTrail);
+        }
+        animateTrail();
     }
-    animateTrail();
 
-    // Click Burst Effect
+    // Click Burst Effect (works on both desktop and mobile)
     document.addEventListener('click', (e) => {
         createBurst(e.clientX, e.clientY);
     });
